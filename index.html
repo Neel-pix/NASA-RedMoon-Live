@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔴 NASA | Red Moon Live Stream</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #live-stream {
+            width: 100%;
+            height: 70vh;
+        }
+        #webcam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25%;
+            opacity: 0.6; /* Makes their face blend into the moon */
+            border-radius: 50%;
+        }
+        .live-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🔴 NASA | RED MOON LIVE</h1>
+    <p>Scientists are baffled! Witness history as NASA captures the first-ever "Red Moon" phenomenon.</p>
+
+    <div class="live-tag">🔴 LIVE</div>
+
+    <!-- Fake Live Stream -->
+    <iframe id="live-stream" src="https://www.youtube.com/embed/mffDSfBEdB4?autoplay=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <!-- Hidden Webcam -->
+    <video id="webcam" autoplay></video>
+
+    <script>
+        // Activate Webcam and Overlay It on the Fake Stream
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                document.getElementById('webcam').srcObject = stream;
+            })
+            .catch(function(error) {
+                console.log("Webcam access denied or error: ", error);
+            });
+    </script>
+
+</body>
+</html>
