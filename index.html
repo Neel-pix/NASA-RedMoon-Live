@@ -10,6 +10,7 @@
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         #live-stream {
             width: 100%;
@@ -20,9 +21,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 25%;
-            opacity: 0.6; /* Makes their face blend into the moon */
+            width: 30%;
+            opacity: 0.7;
             border-radius: 50%;
+            border: 3px solid red;
         }
         .live-tag {
             position: absolute;
@@ -32,6 +34,31 @@
             color: white;
             padding: 5px 10px;
             font-weight: bold;
+        }
+        #overlay-text {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: red;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        #bottom-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        .small-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
@@ -43,10 +70,17 @@
     <div class="live-tag">🔴 LIVE</div>
 
     <!-- Fake Live Stream -->
-    <iframe id="live-stream" src="https://www.youtube.com/embed/mffDSfBEdB4?autoplay=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="live-stream" src="https://www.youtube.com/embed/H999s0P1Er0?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
     <!-- Hidden Webcam -->
     <video id="webcam" autoplay></video>
+
+    <!-- Overlay Text -->
+    <div id="overlay-text">Ha! It's you</div>
+    <div id="bottom-text">
+        Congratulations, you are the moon <br>
+        <span class="small-text">(don't blush so hard, you're outshining the moon)</span>
+    </div>
 
     <script>
         // Activate Webcam and Overlay It on the Fake Stream
