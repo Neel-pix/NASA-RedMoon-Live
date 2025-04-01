@@ -21,10 +21,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 30%;
-            opacity: 0.7;
+            width: 40%; /* Bigger webcam */
+            opacity: 1; /* FULL visibility */
             border-radius: 50%;
-            border: 3px solid red;
+            border: 5px solid red;
+            display: none; /* Hidden initially */
         }
         .live-tag {
             position: absolute;
@@ -46,6 +47,7 @@
             background: rgba(0, 0, 0, 0.6);
             padding: 10px;
             border-radius: 10px;
+            display: none;
         }
         #bottom-text {
             position: absolute;
@@ -55,6 +57,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
+            display: none;
         }
         .small-text {
             font-size: 1rem;
@@ -78,19 +81,28 @@
     <!-- Overlay Text -->
     <div id="overlay-text">Ha! It's you</div>
     <div id="bottom-text">
-        Congratulations, you are the moon <br>
+        Congratulations, you are the Red Moon 😂 <br>
         <span class="small-text">(don't blush so hard, you're outshining the moon)</span>
     </div>
 
     <script>
-        // Activate Webcam and Overlay It on the Fake Stream
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                document.getElementById('webcam').srcObject = stream;
-            })
-            .catch(function(error) {
-                console.log("Webcam access denied or error: ", error);
-            });
+        // Delay the webcam activation by 5 seconds
+        setTimeout(() => {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    let webcam = document.getElementById('webcam');
+                    webcam.srcObject = stream;
+                    webcam.style.display = "block"; // Show webcam after delay
+                })
+                .catch(function(error) {
+                    console.log("Webcam access denied or error: ", error);
+                });
+
+            // Show the prank text after 5 seconds
+            document.getElementById('overlay-text').style.display = "block";
+            document.getElementById('bottom-text').style.display = "block";
+        }, 5000); // 5000ms = 5 seconds
+
     </script>
 
 </body>
